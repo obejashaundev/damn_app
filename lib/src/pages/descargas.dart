@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_const_constructors_in_immutables, import_of_legacy_library_into_null_safe
 
 import 'package:flutter/material.dart';
 import '../components/reproduce_bar.dart';
-import 'package:random_color/random_color.dart';
+import 'dart:math';
 
 class Descargas extends StatefulWidget {
   Descargas({Key? key}) : super(key: key);
@@ -56,19 +56,27 @@ class _DescargasState extends State<Descargas> {
 
   List<Widget> generarListaAudios() {
     List<Widget> audios = List.empty(growable: true);
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 25; i++) {
       Card tarjeta = Card(
-          color: RandomColor().randomColor(),
+          color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              Icon(Icons.album, size: 50),
+              Container(
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  child: Icon(Icons.music_note, size: 50)),
               ListTile(
                 title: Center(
-                  child: Text('Audio Name'),
+                  child: Text(
+                    'Audio Name',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 subtitle: Center(
-                  child: Text("author's name"),
+                  child: Text(
+                    "author's name",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               )
             ],
