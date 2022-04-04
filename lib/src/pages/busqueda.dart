@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import '../components/reproduce_bar.dart';
 
 class Busqueda extends StatefulWidget {
   const Busqueda({Key? key}) : super(key: key);
@@ -19,13 +20,15 @@ class _BusquedaState extends State<Busqueda> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        appBar: AppBar(
-          // Here we take the value from the Busqueda object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: tituloBar(),
-          backgroundColor: Colors.grey,
-        ),
-        body: degradadoContenedor());
+      appBar: AppBar(
+        // Here we take the value from the Busqueda object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: tituloBar(),
+        backgroundColor: Colors.grey,
+      ),
+      body: degradadoContenedor(),
+      bottomNavigationBar: BarraReproduccion(),
+    );
   }
 }
 
