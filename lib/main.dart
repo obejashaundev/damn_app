@@ -24,10 +24,10 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/': (context) => Login(),
         '/registro': (context) => Registro(),
-        '/pantalla_inicio': (context) => Login(),
-        '/pantalla_inicio/historial': (context) => Historial(),
-        '/pantalla_inicio/busqueda': (context) => Busqueda(),
-        '/pantalla_inicio/descargas': (context) => Descargas(),
+        '/pantalla_principal': (context) => Descargas(),
+        '/pantalla_principal/historial': (context) => Historial(),
+        '/pantalla_principal/busqueda': (context) => Busqueda(),
+        '/pantalla_principal/descargas': (context) => Descargas(),
       },
     );
   }

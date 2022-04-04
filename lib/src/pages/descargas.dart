@@ -30,7 +30,7 @@ class _DescargasState extends State<Descargas> {
             style: TextStyle(
               fontFamily: 'Komika',
               color: Colors.white,
-              fontSize: 55,
+              fontSize: 30,
             ),
           ),
           SizedBox(
@@ -57,7 +57,7 @@ class _DescargasState extends State<Descargas> {
           child: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Icon(Icons.album, size: 250),
+          Icon(Icons.album, size: 50),
           ListTile(
             title: Center(
               child: Text('Audio Name'),

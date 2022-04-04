@@ -30,7 +30,7 @@ class _LoginState extends State<Login> {
               style: TextStyle(
                 fontFamily: 'Komika',
                 color: Colors.white,
-                fontSize: 55,
+                fontSize: 40,
               ),
             ),
             //CAJA CORREO
@@ -121,7 +121,10 @@ class _LoginState extends State<Login> {
                   fontSize: 15,
                 ),
               ),
-              onPressed: () => print('Acceder on'),
+              onPressed: () {
+                print('Acceder on');
+                Navigator.pushNamed(context, '/pantalla_principal');
+              },
             ),
 
             //BOTON CREAR CUENTA
@@ -138,7 +141,10 @@ class _LoginState extends State<Login> {
                   fontSize: 15,
                 ),
               ),
-              onPressed: () => print('crear on'),
+              onPressed: () {
+                print('crear on');
+                Navigator.pushNamed(context, '/registro');
+              },
             )
           ],
         ),
