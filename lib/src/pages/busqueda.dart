@@ -141,26 +141,33 @@ Widget itemCancion() {
           ),
         ),
         Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
+          margin: const EdgeInsets.symmetric(horizontal: 10),
           child: const Text(
             "Artista\nNombre de la Canción",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Dustismo',
-              fontSize: 20,
+              fontSize: 12,
               color: Colors.white,
             ),
           ),
         ),
         Container(
-          margin: const EdgeInsets.only(right: 15),
+          //margin: const EdgeInsets.only(right: 15),
           child: Row(
             children: <Widget>[
               IconButton(
-                  onPressed: () => onPressed, icon: const Icon(Icons.download)),
+                  onPressed: () => onPressed,
+                  icon: Icon(
+                    Icons.download,
+                    color: Colors.amber[600],
+                  )),
               IconButton(
                   onPressed: () => onPressed,
-                  icon: const Icon(Icons.play_arrow)),
+                  icon: Icon(
+                    Icons.play_arrow,
+                    color: Colors.green,
+                  )),
             ],
           ),
         ),
