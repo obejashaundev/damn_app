@@ -7,6 +7,7 @@ import 'package:damn_app/src/pages/descargas.dart';
 import 'package:damn_app/src/pages/historial.dart';
 import 'package:damn_app/src/pages/login.dart';
 import 'package:damn_app/src/pages/registro.dart';
+import 'package:damn_app/src/pages/pantalla_principal.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/': (context) => Login(),
         '/registro': (context) => Registro(),
-        '/pantalla_principal': (context) => Descargas(),
+        '/pantalla_principal': (context) => PantallaPrincipal(),
         '/pantalla_principal/historial': (context) => Historial(),
         '/pantalla_principal/busqueda': (context) => Busqueda(),
         '/pantalla_principal/descargas': (context) => Descargas(),

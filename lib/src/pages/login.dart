@@ -123,7 +123,7 @@ class _LoginState extends State<Login> {
               ),
               onPressed: () {
                 print('Acceder on');
-                Navigator.pushNamed(context, '/pantalla_principal');
+                Navigator.of(context).pushNamed('/pantalla_principal');
               },
             ),
 
@@ -143,7 +143,7 @@ class _LoginState extends State<Login> {
               ),
               onPressed: () {
                 print('crear on');
-                Navigator.pushNamed(context, '/registro');
+                Navigator.of(context).pushNamed('/registro');
               },
             )
           ],
