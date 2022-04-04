@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../components/reproduce_bar.dart';
+import 'package:random_color/random_color.dart';
 
 class Descargas extends StatefulWidget {
   Descargas({Key? key}) : super(key: key);
@@ -57,21 +58,21 @@ class _DescargasState extends State<Descargas> {
     List<Widget> audios = List.empty(growable: true);
     for (var i = 0; i < 5; i++) {
       Card tarjeta = Card(
-          /* color: Color(Colors.p), */
+          color: RandomColor().randomColor(),
           child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Icon(Icons.album, size: 50),
-          ListTile(
-            title: Center(
-              child: Text('Audio Name'),
-            ),
-            subtitle: Center(
-              child: Text("author's name"),
-            ),
-          )
-        ],
-      ));
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Icon(Icons.album, size: 50),
+              ListTile(
+                title: Center(
+                  child: Text('Audio Name'),
+                ),
+                subtitle: Center(
+                  child: Text("author's name"),
+                ),
+              )
+            ],
+          ));
       audios.add(tarjeta);
     }
     return audios;
