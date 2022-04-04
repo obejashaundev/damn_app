@@ -1,16 +1,25 @@
-# damn_app
+# Tecmobile
+Plataformas
 
-A new Flutter project.
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
 
-## Getting Started
+Tecnología
 
-This project is a starting point for a Flutter application.
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## DAMN App
+
+![GitHub](https://img.shields.io/github/watchers/obed-peralta/damn_app.svg)
+
+Una aplicación para reproducir y descargar contenido de audio. En teoría lol.
+
+### Acerca de
+
+Damn app es desarrollada por un equipo de colaboradores, con el objetivo de aperturar un nuevo canal de conocimientos cómo también la oportunidad de brindar una herramienta funcional para cualquier usuario.
+
+![License](https://img.shields.io/github/license/obed-peralta/damn_app.svg)
+![Descargas](https://img.shields.io/github/downloads/obed-peralta/damn_app/total.svg)
