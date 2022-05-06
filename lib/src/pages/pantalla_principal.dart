@@ -11,6 +11,8 @@ class PantallaPrincipal extends StatefulWidget {
 }
 
 class _PantallaPrincipalState extends State<PantallaPrincipal> {
+  TextEditingController searchControl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +43,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
                 ),
                 //CAJA BUSQUEDA
                 TextField(
+                    controller: searchControl,
                     keyboardType: TextInputType.text,
                     // obscureText: false,
 
@@ -92,9 +95,13 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
                     ),
                   ),
                   onPressed: () {
-                    print('Busqueda on');
-                    Navigator.of(context)
-                        .pushNamed('/pantalla_principal/busqueda');
+                    if (searchControl.text.isNotEmpty) {
+                      print('Busqueda on');
+                      print(searchControl.text);
+                      Navigator.of(context).pushNamed(
+                          '/pantalla_principal/busqueda',
+                          arguments: searchControl.text);
+                    }
                   },
                 ),
 

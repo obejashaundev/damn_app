@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
-
+// ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import '../components/reproduce_bar.dart';
 
@@ -19,6 +20,8 @@ class _BusquedaState extends State<Busqueda> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    var searchText = ModalRoute.of(context)?.settings.arguments;
+    //print('Text to Search $searchText');
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the Busqueda object that was created by
@@ -26,8 +29,8 @@ class _BusquedaState extends State<Busqueda> {
         title: tituloBar(),
         backgroundColor: Colors.grey,
       ),
-      body: degradadoContenedor(),
-      bottomNavigationBar: BarraReproduccion(),
+      body: degradadoContenedor(searchText.toString()),
+      bottomNavigationBar: const BarraReproduccion(),
     );
   }
 }
@@ -39,7 +42,7 @@ Widget tituloBar() {
   );
 }
 
-Widget degradadoContenedor() {
+Widget degradadoContenedor(String searchText) {
   return Container(
     decoration: const BoxDecoration(
         gradient: LinearGradient(colors: [
@@ -54,25 +57,20 @@ Widget degradadoContenedor() {
           tituloBusqueda(),
           barraBusqueda(),
           Expanded(
-            child: ListView(
-              children: <Widget>[
-                itemCancion(),
-                itemCancion(),
-                itemCancion(),
-                itemCancion(),
-                itemCancion(),
-                itemCancion(),
-                itemCancion(),
-                itemCancion(),
-                itemCancion(),
-                itemCancion(),
-                itemCancion(),
-                itemCancion(),
-                itemCancion(),
-                itemCancion(),
-              ],
-            ),
-          )
+              child: FutureBuilder<dynamic>(
+            future: getSongs(searchText),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                print(snapshot);
+                return ListView(
+                  children: listadoCanciones(snapshot.data),
+                );
+              }
+              return ListView(
+                children: [Container()],
+              );
+            },
+          ))
         ],
       ),
     ),
@@ -116,7 +114,7 @@ Widget barraBusqueda() {
       )));
 }
 
-Widget itemCancion() {
+Widget itemCancion(String url, String title, String thumbnailURL) {
   var onPressed;
   return Container(
     margin: const EdgeInsets.fromLTRB(46, 0, 46, 20),
@@ -133,66 +131,61 @@ Widget itemCancion() {
           width: 50,
           decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(2))),
-          child: const Image(
-            image: NetworkImage(
-                'https://yt3.ggpht.com/a/AATXAJx5eyl0PzfFXwGh0lyrSEd_JgUxQgjUlVcqFw=s900-c-k-c0xffffffff-no-rj-mo'),
+          child: Image(
+            image: NetworkImage(thumbnailURL.toString()),
             isAntiAlias: true,
             fit: BoxFit.fill,
           ),
         ),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 10),
-          child: const Text(
-            "Artista\nNombre de la Canción",
+          child: Text(
+            title,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontFamily: 'Dustismo',
               fontSize: 12,
               color: Colors.white,
             ),
           ),
         ),
-        Container(
-          //margin: const EdgeInsets.only(right: 15),
-          child: Row(
-            children: <Widget>[
-              IconButton(
-                  onPressed: () => onPressed,
-                  icon: Icon(
-                    Icons.download,
-                    color: Colors.amber[600],
-                  )),
-              IconButton(
-                  onPressed: () => onPressed,
-                  icon: Icon(
-                    Icons.play_arrow,
-                    color: Colors.green,
-                  )),
-            ],
-          ),
+        Row(
+          children: <Widget>[
+            IconButton(
+                onPressed: () => onPressed,
+                icon: Icon(
+                  Icons.download,
+                  color: Colors.amber[600],
+                )),
+            IconButton(
+                onPressed: () => onPressed,
+                icon: const Icon(
+                  Icons.play_arrow,
+                  color: Colors.green,
+                )),
+          ],
         ),
       ],
     ),
   );
 }
 
+Future<dynamic> getSongs(String searchText) async {
+  String linkTemp = 'https://9a93-200-68-128-163.ngrok.io';
+  final respuesta = await http.get(Uri.parse("$linkTemp/search/$searchText"));
 
-// Container(
-//           margin: const EdgeInsets.symmetric(horizontal: 30),
-//           child: const Text(
-//             'Nombre canción',
-//             style: TextStyle(
-//                 fontFamily: 'Dustismo', fontSize: 20, color: Colors.white),
-//           ),
-//         ),
-//         Container(
-//           margin: const EdgeInsets.symmetric(horizontal: 5),
-//           child: IconButton(
-//               onPressed: onPressed, icon: const Icon(Icons.download, size: 30)),
-//         ),
-//         Container(
-//           margin: const EdgeInsets.symmetric(horizontal: 15),
-//           child: IconButton(
-//               onPressed: onPressed,
-//               icon: const Icon(Icons.play_arrow, size: 30)),
-//         )
+  if (respuesta.statusCode == 200) {
+    return jsonDecode(respuesta.body);
+  } else {
+    print("Error con la respuesta");
+  }
+}
+
+List<Widget> listadoCanciones(List<dynamic> data) {
+  List<Widget> lista = [];
+  for (var audioData in data) {
+    lista.add(itemCancion(
+        audioData['url'], audioData['title'], audioData['thumbnailURL']));
+  }
+  return lista;
+}
